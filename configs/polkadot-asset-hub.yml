@@ -2,6 +2,8 @@ endpoint: wss://polkadot-asset-hub-rpc.polkadot.io
 mock-signature-host: true
 block: ${env.POLKADOT_ASSET_HUB_BLOCK_NUMBER}
 db: ./db.sqlite
+wasm-override: ah-polkadot.wasm
+runtime-log-level: 5
 
 import-storage:
   System:
@@ -12,9 +14,23 @@ import-storage:
         - providers: 1
           data:
             free: 1000000000000000
+      -
+        -
+          - 13YMK2ef1Sd4zVkT7Qmji3fMvz4gEpoGUyRPAt8pBjamne88
+        - providers: 1
+          data:
+            free: 1000000000000000
+      -
+        -
+          - 5Ec4AhPb9fMbYxjw9mijZtqD5N52YXF8QUgu1b9TdeZFcMRT
+        - providers: 1
+          data:
+            free: 1000000000000000
   Assets:
     Account:
       - [[1984, 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY], { balance: 1000000000 }]
       - [[21, 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY], { balance: 1000000000 }]
+      - [[1337, 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY], { balance: 100000000000 }]
+      - [[1337, 5Ec4AhPb9fMbYxjw9mijZtqD5N52YXF8QUgu1b9TdeZFcMRT], { balance: 100000000000 }]
     Asset: [[[21], { supply: 1000000000 }]]
 

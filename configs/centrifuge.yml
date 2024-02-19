@@ -1,8 +1,11 @@
-endpoint: wss://centrifuge-parachain.api.onfinality.io/public-ws/
+# endpoint: wss://centrifuge-parachain.api.onfinality.io/public-ws/
+endpoint: wss://fullnode.centrifuge.io/
 mock-signature-host: true
 block: ${env.CENTRIFUGE_BLOCK_NUMBER}
 db: ./db.sqlite
-# wasm-override: centrifuge-1023.wasm
+# wasm-override: centrifuge-1024-sudo.wasm
+wasm-override: cfg1025_allow-borrow.wasm
+runtime-log-level: 5
 
 import-storage:
   # Sudo:
@@ -38,13 +41,50 @@ import-storage:
     Proxies:
       -
         -
-          - 4dTeMxuPJCK7zQGhFcgCivSJqBs9Wo2SuMSQeYCCuVJ9xrE2
+          - 4gJcbk2V9JLmYkMPDeeYZ2Kmtf6J6GqYfdNw4qdzzSzBppDW
         -
           -
             - delegate: "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
             - proxyType: "Any"
             - delay: 0
           - "350000000000000000"
-
+      -
+        -
+          - 4eEqmbQMbFfNUg6bQnqi9zgUvQvSpNbUgstEM64Xq9FW58Xv
+        -
+          -
+            - delegate: "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+            - proxyType: "Any"
+            - delay: 0
+          - "350000000000000000"
+  Permissions:
+    Permission:
+      -
+        -
+          - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+          - Pool: 4139607887
+        -
+          poolAdmin:
+            bits: 59
+          currencyAdmin:
+            bits: 0
+          permissionedAssetHolder:
+            info: null
+          trancheInvestor:
+            info: []
+      # -
+      #   -
+      #     - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+      #     - Pool: 4139607886
+      #   -
+      #     - poolAdmin:
+      #       - bits:
+      #         - 59
+      #     - currencyAdmin:
+      #       - bits: 0
+      #     - permissionedAssetHolder:
+      #       - info: null
+      #     - trancheInvestor:
+      #       - info: []
 
 
