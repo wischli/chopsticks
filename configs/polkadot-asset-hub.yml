@@ -2,7 +2,8 @@ endpoint: wss://polkadot-asset-hub-rpc.polkadot.io
 mock-signature-host: true
 block: ${env.POLKADOT_ASSET_HUB_BLOCK_NUMBER}
 db: ./db.sqlite
-wasm-override: ah-polkadot.wasm
+# wasm-override: ah-polkadot.wasm
+wasm-override: asset_hub_polkadot_runtime.compact.compressed.wasm
 runtime-log-level: 5
 
 import-storage:
@@ -31,6 +32,6 @@ import-storage:
       - [[1984, 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY], { balance: 1000000000 }]
       - [[21, 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY], { balance: 1000000000 }]
       - [[1337, 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY], { balance: 100000000000 }]
-      - [[1337, 5Ec4AhPb9fMbYxjw9mijZtqD5N52YXF8QUgu1b9TdeZFcMRT], { balance: 100000000000 }]
+      - [[1337, 13cKp89U6Aoy86UbfQipph1BBTjyxErNYd4pRqfK4TcLeUXg], { balance: 10000000000000 }] # SIBLING 2031
     Asset: [[[21], { supply: 1000000000 }]]
 

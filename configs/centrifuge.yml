@@ -26,12 +26,17 @@ import-storage:
         stake: "10000000000000000000000"
         deposit: "10000000000000000000000"
   OrmlTokens:
+    TotalIssuance:
+       -
+        -
+          - ForeignAsset: 6
+        - "10000000000000"
     Accounts:
       -
         -
           - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
           - ForeignAsset: 6
-        - free: 1000000000000
+        - free: "10000000000000"
       -
         -
           - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
