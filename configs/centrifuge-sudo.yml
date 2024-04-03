@@ -1,12 +1,14 @@
-endpoint: wss://centrifuge-parachain.api.onfinality.io/public-ws/
+# endpoint: wss://fullnode.demo.k-f.dev/public-ws
+endpoint: wss://fullnode.centrifuge.io/
 mock-signature-host: true
 block: ${env.CENTRIFUGE_BLOCK_NUMBER}
 db: ./db.sqlite
 runtime-log-level: 5
-# wasm-override: cfg-1028.wasm
+wasm-override: centrifuge-1024-sudo.wasm
 
 import-storage:
-
+  Sudo:
+    Key: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY # Alice
   System:
     # Fund addresses with native currency
     Account:
@@ -43,7 +45,7 @@ import-storage:
         -
           - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
           - ForeignAsset: 6
-        - free: 1000000000000
+        - free: "10000000000000"
       -
         -
           - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
