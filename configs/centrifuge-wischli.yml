@@ -1,0 +1,169 @@
+# endpoint: wss://centrifuge-parachain.api.onfinality.io/public-ws/
+endpoint: wss://fullnode.centrifuge.io/
+mock-signature-host: true
+block: ${env.CENTRIFUGE_BLOCK_NUMBER}
+# block: 5094031
+db: ./db.sqlite
+# wasm-override: cfg-1.1.0-rc1.wasm
+# wasm-override: cfg1025_allow-borrow.wasm
+wasm-override: cfg1028_sudo.wasm
+runtime-log-level: 5
+
+import-storage:
+  Sudo:
+    Key: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY # Alice
+  System:
+    Account:
+      -
+        -
+          - "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+        - providers: 1
+          data:
+            free: "1000000000000000000000000"
+      -
+        -
+          - "4cahmBB8KKuXYUPD7JXe47NpVEt7GCE4YaVbGgHLoZcuVvPJ" #Chopsticks Multisig
+        - providers: 1
+          data:
+            free: "1000000000000000000000000"
+      -
+        -
+          - "4eZq6YogeXHKvjLhHjNKoTzv6MLESn7MkBEQSvctxAnAT82t" # Bob
+        - providers: 1
+          data:
+            free: "1000000000000000000000000"
+      -
+        -
+          - "4eZq6YogeXHKvjLhHjNKoTzv6MLESn7MkBEQSvctxAnAT82t" # Charlie
+        - providers: 1
+          data:
+            free: "1000000000000000000000000"
+  Council:
+    Members: [5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY]
+  Elections:
+    Members:
+      - who: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+        stake: "10000000000000000000000"
+        deposit: "10000000000000000000000"
+  OrmlTokens:
+    TotalIssuance:
+       -
+        -
+          - ForeignAsset: 6
+        - "10000000000000"
+    Accounts:
+      -
+        -
+          - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+          - ForeignAsset: 6
+        - free: "10000000000000"
+      -
+        -
+          - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+          - ForeignAsset: 4
+        - free: "1000000000000000000000"
+  Proxy:
+    Proxies:
+      -
+        -
+          - 4gJcbk2V9JLmYkMPDeeYZ2Kmtf6J6GqYfdNw4qdzzSzBppDW
+        -
+          -
+            - delegate: "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+            - proxyType: "Any"
+            - delay: 0
+          - "350000000000000000"
+      -
+        -
+          - 4eEqmbQMbFfNUg6bQnqi9zgUvQvSpNbUgstEM64Xq9FW58Xv
+        -
+          -
+            - delegate: "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+            - proxyType: "Any"
+            - delay: 0
+          - "350000000000000000"
+      -
+        -
+          - 4gResb8JcTKHgm99XHTcfeXKzYwsL7kyaPQJzqtfK53ZHdy2
+        -
+          -
+            - delegate: "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+            - proxyType: "Any"
+            - delay: 0
+          - "350000000000000000"
+      -
+        -
+          - 4fqPMgY5kPbPCpiZCA7QqLgtjJSjHwwwb9LYJDbRLnuKVzrE
+        -
+          -
+            - delegate: "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+            - proxyType: "Any"
+            - delay: 0
+          - "350000000000000000"
+      -
+        -
+          - 4dM5pHAuujs6HT63qpgCa7pMMhq9GpgevY8PSgsaXz6msuB6 #cosmin multi
+        -
+          -
+            - delegate: "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+            - proxyType: "Any"
+            - delay: 0
+          - "350000000000000000"
+      -
+        -
+          - 4cG4X1BLpwC1CmAAunwYzkxqzKhyyeZPSv2bLNBJVMjh8Guj #cosmin multi
+        -
+          -
+          -
+          -
+        -
+      -
+        -
+          - 4cG4X1BLpwC1CmAAunwYzkxqzKhyyeZPSv2bLNBJVMjh8Guj #cosmin multi
+        -
+          -
+            - delegate: "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+            - proxyType: "NonProxy"
+            - delay: 0
+          - "550000000000000000"
+  Permissions:
+    Permission:
+      -
+        -
+          - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+          - Pool: 4139607887
+        -
+          poolAdmin:
+            bits: 59
+          currencyAdmin:
+            bits: 0
+          permissionedAssetHolder:
+            info: null
+          trancheInvestor:
+            info: []
+      # -
+      #   -
+      #     - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+      #     - Pool: 4139607886
+      #   -
+      #     - poolAdmin:
+      #       - bits:
+      #         - 59
+      #     - currencyAdmin:
+      #       - bits: 0
+      #     - permissionedAssetHolder:
+      #       - info: null
+      #     - trancheInvestor:
+      #       - info: []
+  # Claims:
+  #   UploadAccount: "4cahmBB8KKuXYUPD7JXe47NpVEt7GCE4YaVbGgHLoZcuVvPJ"
+  OraclePriceCollection:
+    CollectionInfo:
+      -
+        -
+          - 4139607887
+        - feeders:
+          - system:
+              signed:
+
+
