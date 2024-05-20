@@ -113,16 +113,23 @@ export class SetValidationData implements InherentProvider {
       extrinsic.relayChainState.trieNodes,
     )
 
-    const slotIncrease = (meta.consts.timestamp.minimumPeriod as any as BN)
-      .divn(3000) // relaychain min period
-      .toNumber()
+    const slotIncrease = Math.max(
+      1, // min
+      (meta.consts.timestamp?.minimumPeriod as any as BN) // legacy
+        ?.divn(3000) // relaychain min period
+        ?.toNumber() ||
+        (meta.consts.aura?.slotDuration as any as BN) // async backing
+          ?.divn(6000) // relaychain block time
+          ?.toNumber() ||
+        1,
+    )
 
     for (const key of Object.values(WELL_KNOWN_KEYS)) {
       if (key === WELL_KNOWN_KEYS.CURRENT_SLOT) {
         // increment current slot
         const relayCurrentSlot = decoded[key]
           ? meta.registry.createType<Slot>('Slot', hexToU8a(decoded[key])).toNumber()
-          : (await getCurrentSlot(parent.chain)) * slotIncrease
+          : (await getCurrentSlot(parent)) * slotIncrease
         const newSlot = meta.registry.createType<Slot>('Slot', relayCurrentSlot + slotIncrease)
         newEntries.push([key, u8aToHex(newSlot.toU8a())])
       } else {
