@@ -1,6 +1,6 @@
 {
 	"name": "@acala-network/chopsticks",
-	"version": "0.10.2",
+	"version": "0.12.2",
 	"author": "Acala Developers <hello@acala.network>",
 	"license": "Apache-2.0",
 	"bin": "./chopsticks.cjs",
@@ -10,23 +10,27 @@
 		"build": "yarn clean && yarn build:cjs && yarn build:esm",
 		"build:cjs": "swc ./src --config-file ../../.cjsswcrc -d dist/cjs --copy-files && tsc -p tsconfig.json --declarationDir dist/cjs && echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json",
 		"build:esm": "swc ./src --config-file ../../.esmswcrc -d dist/esm --copy-files && tsc -p tsconfig.json --declarationDir dist/esm",
-		"docs:prep": "typedoc"
+		"docs:prep": "typedoc",
+		"depcheck": "npx depcheck --ignore-patterns='*.test.ts'"
 	},
 	"dependencies": {
 		"@acala-network/chopsticks-core": "workspace:*",
 		"@acala-network/chopsticks-db": "workspace:*",
 		"@pnpm/npm-conf": "^2.2.2",
-		"@polkadot/api-augment": "^10.11.2",
-		"@polkadot/types": "^10.11.2",
+		"@polkadot/api": "^11.2.1",
+		"@polkadot/api-augment": "^11.2.1",
+		"@polkadot/rpc-provider": "^11.2.1",
+		"@polkadot/types": "^11.2.1",
 		"@polkadot/util": "^12.6.2",
 		"@polkadot/util-crypto": "^12.6.2",
 		"axios": "^1.6.8",
+		"comlink": "^4.4.1",
 		"dotenv": "^16.4.5",
 		"global-agent": "^3.0.0",
 		"js-yaml": "^4.1.0",
 		"jsondiffpatch": "^0.5.0",
 		"lodash": "^4.17.21",
-		"ws": "^8.16.0",
+		"ws": "^8.17.1",
 		"yargs": "^17.7.2",
 		"zod": "^3.22.4"
 	},
@@ -39,8 +43,7 @@
 		"@types/node": "^20.11.5",
 		"@types/ws": "^8.5.10",
 		"@types/yargs": "^17.0.32",
-		"typescript": "^5.3.3",
-		"vitest": "^1.4.0"
+		"typescript": "^5.3.3"
 	},
 	"files": [
 		"dist/esm/**",
